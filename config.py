@@ -1,0 +1,2 @@
+DRIVER_PATH = "D:/code/chromedriver.exe"
+BOT_TOKEN = "5358228868:AAGO87296Pg7BlFngQEd1Dj9RAMNt1b5C_w"

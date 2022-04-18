@@ -1,0 +1,540 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru"><head>
+    <title>[Региональный интернет-дневник v4.1] Домашнее задание</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <link rel="icon" href="/static/images/favicon.ico">
+    
+    <link href="/static/css/base.css?v1" rel="stylesheet" type="text/css">
+    
+    
+    <script async="" src="https://mc.yandex.ru/metrika/tag.js"></script><script src="/static/js/jquery-1.7.1.min.js?v1" type="text/javascript"></script>
+    <script src="/static/js/jquery-ui-1.10.3.custom.min.js?v1" type="text/javascript"></script>
+    <script src="/static/js/jquery-scrolltofixed-min.js?v1" type="text/javascript"></script>
+    <script src="/static/js/thickbox.js?v1" type="text/javascript"></script>
+    <script src="/static/js/common.js?v1" type="text/javascript"></script>
+    <script src="/static/js/calendar.js?v1" type="text/javascript"></script>
+    
+    <script src="//code.jivosite.com/widget/zxsgI0fdrl" async=""></script>
+    
+    <script type="text/javascript">
+        function updateMsgCount() {
+            var ajx_url = "/ajax/messages_count/";
+            $.getJSON(ajx_url, function(data) {
+                if (data != null) {
+                    var count_str = '';
+                    if (data['unread_messages'] > 0) {
+                        $('#menu_msg_count').html('<span>' + data['unread_messages'] + '</span>');
+                        count_str += data['unread_messages'] + ' / ';
+                    }
+
+                    count_str += '<span>' + data['all_messages'] + '</span>';
+                    $('#msg_count').html(count_str);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            var interval = parseInt('120000');
+            if (interval > 0) {
+                updateMsgCount();
+                //setInterval(updateMsgCount, interval);
+            }
+
+
+            // Фиксация при вертикальной прокрутке
+            var wrap_head_margin = 30;
+            if (!$('#markloc').length) {
+                wrap_head_margin = 0;
+            }
+
+            $('#markloc').scrollToFixed({
+                zIndex: 99,
+                preFixed: function() { $(this).addClass('fix'); },
+                postFixed: function() { $(this).removeClass('fix'); }
+            });
+
+            $('#wrap-head').scrollToFixed({
+                zIndex: 98,
+                marginTop: wrap_head_margin,
+                preFixed: function() { $(this).addClass('fix'); },
+                postFixed: function() { $(this).removeClass('fix'); }
+            });
+
+            // Горизонтальная прокрутка дат и подсветка строки с оценками
+            if ($("#wrap-date").length || $("#wrap-head").length) {
+                $('#wrap-date').bind('scroll', function() {
+                    $('#wrap-marks').scrollLeft($('#wrap-date').scrollLeft());
+                });
+
+                $('#user-row[name]').hover(
+                    function() {
+                        $('#mark-row[name="' + $(this).attr('name') + '"]').addClass('mark-row_hover');
+                        if ($('#avg-row').length) {
+                            $('#avg-row[name="' + $(this).attr('name') + '"]').addClass('mark-row_hover');
+                        }
+                    },
+                    function() {
+                        $('#mark-row[name="' + $(this).attr('name') + '"]').removeClass('mark-row_hover');
+                        if ($('#avg-row').length) {
+                            $('#avg-row[name="' + $(this).attr('name') + '"]').removeClass('mark-row_hover');
+                        }
+                    }
+                );
+
+                $('#mark-row[name]').hover(
+                    function() {
+                        $('#user-row[name="' + $(this).attr('name') + '"]').addClass('user-row_hover');
+                        if ($('#avg-row').length) {
+                            $('#avg-row[name="' + $(this).attr('name') + '"]').addClass('mark-row_hover');
+                        }
+                    },
+                    function() {
+                        $('#user-row[name="' + $(this).attr('name') + '"]').removeClass('user-row_hover');
+                        if ($('#avg-row').length) {
+                            $('#avg-row[name="' + $(this).attr('name') + '"]').removeClass('mark-row_hover');
+                        }
+                    }
+                );
+
+                if ($('#avg-row').length) {
+                    $('#avg-row[name]').hover(
+                        function() {
+                            $('#mark-row[name="' + $(this).attr('name') + '"]').addClass('mark-row_hover');
+                            $('#user-row[name="' + $(this).attr('name') + '"]').addClass('user-row_hover');
+                        },
+                        function() {
+                            $('#mark-row[name="' + $(this).attr('name') + '"]').removeClass('mark-row_hover');
+                            $('#user-row[name="' + $(this).attr('name') + '"]').removeClass('user-row_hover');
+                        }
+                    );
+                }
+            }
+        });
+    </script>
+    
+    
+<link rel="stylesheet" href="https://code-eu1.jivosite.com/css/98f1b980/widget.css"></head>
+
+<body onload="loadSubjects('/ajax/subj/171065', true)">
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(10988770, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/10988770" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <div id="wrapper">
+        <!-- Ads system -->
+        <div class="top_banners"><div class="left_b"><!-- Revive Adserver Метка JavaScript (click tracking for: Revive Adserver) - Generated with Revive Adserver v5.0.5 --><script type="text/javascript"><!--//<![CDATA[
+                   document.MAX_ct0 = unescape('{clickurl_enc}');
+
+                   var m3_u = (location.protocol=='https:'?'https://ads.zavolga.net/www/delivery/ajs.php':'http://ads.zavolga.net/www/delivery/ajs.php');
+                   var m3_r = Math.floor(Math.random()*99999999999);
+                   if (!document.MAX_used) document.MAX_used = ',';
+                   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+                   document.write ("?zoneid=6&amp;target=_blank");
+                   document.write ('&amp;cb=' + m3_r);
+                   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+                   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+                   document.write ("&amp;loc=" + escape(window.location));
+                   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+                   if (document.context) document.write ("&context=" + escape(document.context));
+                   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+                       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+                   }
+                   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+                   document.write ("'><\/scr"+"ipt>");
+                //]]>--></script><script type="text/javascript" src="https://ads.zavolga.net/www/delivery/ajs.php?zoneid=6&amp;target=_blank&amp;cb=21800308704&amp;charset=UTF-8&amp;loc=https%3A//my.dnevnik76.ru/homework/"></script><a href="https://ads.zavolga.net/www/delivery/ck.php?oaparams=2__bannerid=24__zoneid=6__cb=1ce94781b3__oadest=https%3A%2F%2Fvk.com%2Fskgrenada" target="_blank"><img src="https://ads.zavolga.net/www/images/ee9926512930128a4b0dcc23f32aed09.jpg" width="490" height="60" alt="" title="" border="0"></a><div id="beacon_1ce94781b3" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://ads.zavolga.net/www/delivery/lg.php?bannerid=24&amp;campaignid=10&amp;zoneid=6&amp;loc=https%3A%2F%2Fmy.dnevnik76.ru%2Fhomework%2F&amp;cb=1ce94781b3" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript><a href='http://ads.zavolga.net/www/delivery/ck.php?n=abef7329&amp;cb={random}' target='_blank'><img src='http://ads.zavolga.net/www/delivery/avw.php?zoneid=6&amp;cb={random}&amp;n=abef7329&amp;ct0={clickurl_enc}' border='0' alt='' /></a></noscript></div><div class="right_b"><!-- Revive Adserver Метка JavaScript (click tracking for: Revive Adserver) - Generated with Revive Adserver v5.0.5 --><script type="text/javascript"><!--//<![CDATA[
+                   document.MAX_ct0 = unescape('{clickurl_enc}');
+
+                   var m3_u = (location.protocol=='https:'?'https://ads.zavolga.net/www/delivery/ajs.php':'http://ads.zavolga.net/www/delivery/ajs.php');
+                   var m3_r = Math.floor(Math.random()*99999999999);
+                   if (!document.MAX_used) document.MAX_used = ',';
+                   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+                   document.write ("?zoneid=7&amp;target=_blank");
+                   document.write ('&amp;cb=' + m3_r);
+                   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+                   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+                   document.write ("&amp;loc=" + escape(window.location));
+                   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+                   if (document.context) document.write ("&context=" + escape(document.context));
+                   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+                       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+                   }
+                   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+                   document.write ("'><\/scr"+"ipt>");
+                //]]>--></script><script type="text/javascript" src="https://ads.zavolga.net/www/delivery/ajs.php?zoneid=7&amp;target=_blank&amp;cb=17240558869&amp;charset=UTF-8&amp;loc=https%3A//my.dnevnik76.ru/homework/"></script><div id="beacon_27da7a9ac9" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://ads.zavolga.net/www/delivery/lg.php?bannerid=0&amp;campaignid=0&amp;zoneid=7&amp;loc=https%3A%2F%2Fmy.dnevnik76.ru%2Fhomework%2F&amp;cb=27da7a9ac9" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript><a href='http://ads.zavolga.net/www/delivery/ck.php?n=a9fc25b7&amp;cb={random}' target='_blank'><img src='http://ads.zavolga.net/www/delivery/avw.php?zoneid=7&amp;cb={random}&amp;n=a9fc25b7&amp;ct0={clickurl_enc}' border='0' alt='' /></a></noscript></div></div>
+        <!-- /Ads system -->
+
+        
+        <div id="color_line">
+            <div class="col1"></div>
+            <div class="col2"></div>
+            <div class="col3"></div>
+        </div>
+
+        <div id="header">
+            <div id="logo">
+                <img src="/static/images/logo.png" alt="Региональный интернет-дневник (версия 4.1)" title="На главную" onclick="document.location = '/'">
+                <img src="/homework/agr_stat/" class="agr_stat">
+                <h1>Региональный интернет-дневник 4.1</h1>
+                <span id="eduyear">
+                    <a href="#" id="curedy" title="Изменить учебный год" onclick="return showSelectYear()">2021-2022 учебный год</a>
+                    <form id="yearsel_form" action="/homework/" method="get">
+                        <input type="text" id="yearsel" value="2021" onkeyup="changeEduYear(this)" maxlength="4"> -
+                        <input type="text" id="yearsel_end" value="2022" disabled="disabled">
+                        <input type="button" value="Применить" class="submit" onclick="selectEduYear()">
+                    </form>
+                </span>
+
+                
+            </div>
+            <div id="auth_info">
+                <span id="role">
+                    
+                        Учащийся
+                    
+
+                    
+                        
+                            (7 "Д")
+                        
+                    
+                </span>
+                <span id="local_login"><a href="/settings/" title="Личные настройки">00164262</a></span>
+                <span id="logout"><a href="/accounts/logout/" title="Выйти из дневника">Выйти</a></span>
+            </div>
+        </div>
+
+        <div id="menu"><ul id="gmenu_list"><li><a href="/" title="Моя страница"><img src="/static/images/menu_mypage.png"></a></li><li><a href="/marks/current/" title="Текущие оценки"><img src="/static/images/menu_marks.png"></a></li><li><a href="/schedule/" title="Расписание занятий и звонков"><img src="/static/images/menu_schedule.png"></a></li></ul><ul id="menu_list"><li id="homework" class="active"><a href="/homework/" title="Домашнее задание по предметам + архив заданий">Домашнее задание</a></li><li id="teachers"><a href="/teachers/" title="Список преподавателей">Учителя</a></li><li id="messages"><a href="/messages/input/" title="Обмен сообщениями">Сообщения</a><span id="menu_msg_count"><span>25</span></span><div id="sub_messages" class="sub"><ul><li><a href="/messages/input/" title="Список входящий сообщений">Входящие</a></li><li><a href="/messages/output/" title="Список отправленных сообщений">Отправленные</a></li><li><a href="/messages/new/" title="Создание нового сообщения">Новое сообщение</a></li></ul></div></li><li id="files"><a href="/files/" title="Файловое хранилище" onclick="showSubMenu(this, 'sub_files', true); return false;">Файлы</a><div id="sub_files" class="sub"><ul class="last"><li><a href="/files/home/" title="Домашняя папка">Домашняя папка</a></li><li><a href="/files/trash/" title="Корзина">Корзина</a></li></ul></div></li></ul><div id="color_line"><div class="col1"></div><div class="col2"></div><div class="col3"></div></div></div>
+
+        <div class="center_banners">
+            <div class="left_b">
+                <!-- Revive Adserver Метка JavaScript (click tracking for: Revive Adserver) - Generated with Revive Adserver v5.0.5 -->
+                <script type="text/javascript"><!--//<![CDATA[
+                   document.MAX_ct0 = unescape('{clickurl_enc}');
+
+                   var m3_u = (location.protocol=='https:'?'https://ads.zavolga.net/www/delivery/ajs.php':'http://ads.zavolga.net/www/delivery/ajs.php');
+                   var m3_r = Math.floor(Math.random()*99999999999);
+                   if (!document.MAX_used) document.MAX_used = ',';
+                   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+                   document.write ("?zoneid=8&amp;target=_blank");
+                   document.write ('&amp;cb=' + m3_r);
+                   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+                   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+                   document.write ("&amp;loc=" + escape(window.location));
+                   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+                   if (document.context) document.write ("&context=" + escape(document.context));
+                   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+                       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+                   }
+                   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+                   document.write ("'><\/scr"+"ipt>");
+                //]]>--></script><script type="text/javascript" src="https://ads.zavolga.net/www/delivery/ajs.php?zoneid=8&amp;target=_blank&amp;cb=46348711504&amp;charset=UTF-8&amp;loc=https%3A//my.dnevnik76.ru/homework/"></script><a href="https://ads.zavolga.net/www/delivery/ck.php?oaparams=2__bannerid=27__zoneid=8__cb=2899d0d4b3__oadest=https%3A%2F%2Fwww.yarobltour.ru%2Frus%2F%3Fsec%3D111" target="_blank"><img src="https://ads.zavolga.net/www/images/a5a3b37780487e9c6e64af2082651091.png" width="351" height="60" alt="" title="" border="0"></a><div id="beacon_2899d0d4b3" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://ads.zavolga.net/www/delivery/lg.php?bannerid=27&amp;campaignid=12&amp;zoneid=8&amp;loc=https%3A%2F%2Fmy.dnevnik76.ru%2Fhomework%2F&amp;cb=2899d0d4b3" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript><a href='http://ads.zavolga.net/www/delivery/ck.php?n=ab06faa9&amp;cb={random}' target='_blank'><img src='http://ads.zavolga.net/www/delivery/avw.php?zoneid=8&amp;cb={random}&amp;n=ab06faa9&amp;ct0={clickurl_enc}' border='0' alt='' /></a></noscript>
+            </div>
+            <div class="center_b">
+                <!-- Revive Adserver Метка JavaScript (click tracking for: Revive Adserver) - Generated with Revive Adserver v5.0.5 -->
+                <script type="text/javascript"><!--//<![CDATA[
+                   document.MAX_ct0 = unescape('{clickurl_enc}');
+
+                   var m3_u = (location.protocol=='https:'?'https://ads.zavolga.net/www/delivery/ajs.php':'http://ads.zavolga.net/www/delivery/ajs.php');
+                   var m3_r = Math.floor(Math.random()*99999999999);
+                   if (!document.MAX_used) document.MAX_used = ',';
+                   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+                   document.write ("?zoneid=9&amp;target=_blank");
+                   document.write ('&amp;cb=' + m3_r);
+                   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+                   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+                   document.write ("&amp;loc=" + escape(window.location));
+                   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+                   if (document.context) document.write ("&context=" + escape(document.context));
+                   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+                       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+                   }
+                   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+                   document.write ("'><\/scr"+"ipt>");
+                //]]>--></script><script type="text/javascript" src="https://ads.zavolga.net/www/delivery/ajs.php?zoneid=9&amp;target=_blank&amp;cb=83714861636&amp;charset=UTF-8&amp;loc=https%3A//my.dnevnik76.ru/homework/"></script><div id="beacon_fb61762168" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://ads.zavolga.net/www/delivery/lg.php?bannerid=0&amp;campaignid=0&amp;zoneid=9&amp;loc=https%3A%2F%2Fmy.dnevnik76.ru%2Fhomework%2F&amp;cb=fb61762168" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript><a href='http://ads.zavolga.net/www/delivery/ck.php?n=ab06faa9&amp;cb={random}' target='_blank'><img src='http://ads.zavolga.net/www/delivery/avw.php?zoneid=9&amp;cb={random}&amp;n=ab06faa9&amp;ct0={clickurl_enc}' border='0' alt='' /></a></noscript>
+            </div>
+            <div class="center_b">
+                <!-- Revive Adserver Метка JavaScript (click tracking for: Revive Adserver) - Generated with Revive Adserver v5.0.5 -->
+                <script type="text/javascript"><!--//<![CDATA[
+                   document.MAX_ct0 = unescape('{clickurl_enc}');
+
+                   var m3_u = (location.protocol=='https:'?'https://ads.zavolga.net/www/delivery/ajs.php':'http://ads.zavolga.net/www/delivery/ajs.php');
+                   var m3_r = Math.floor(Math.random()*99999999999);
+                   if (!document.MAX_used) document.MAX_used = ',';
+                   document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+                   document.write ("?zoneid=10&amp;target=_blank");
+                   document.write ('&amp;cb=' + m3_r);
+                   if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+                   document.write (document.charset ? '&amp;charset='+document.charset : (document.characterSet ? '&amp;charset='+document.characterSet : ''));
+                   document.write ("&amp;loc=" + escape(window.location));
+                   if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+                   if (document.context) document.write ("&context=" + escape(document.context));
+                   if ((typeof(document.MAX_ct0) != 'undefined') && (document.MAX_ct0.substring(0,4) == 'http')) {
+                       document.write ("&amp;ct0=" + escape(document.MAX_ct0));
+                   }
+                   if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+                   document.write ("'><\/scr"+"ipt>");
+                //]]>--></script><script type="text/javascript" src="https://ads.zavolga.net/www/delivery/ajs.php?zoneid=10&amp;target=_blank&amp;cb=60128751071&amp;charset=UTF-8&amp;loc=https%3A//my.dnevnik76.ru/homework/"></script><a href="https://ads.zavolga.net/www/delivery/ck.php?oaparams=2__bannerid=23__zoneid=10__cb=2ab0130141__oadest=http%3A%2F%2Fyarbalet.ru%2Fstudentam-i-shkolnikam%2F" target="_blank"><img src="https://ads.zavolga.net/www/images/f7011e1de78b9b452159f4415732038b.gif" width="250" height="60" alt="" title="" border="0"></a><div id="beacon_2ab0130141" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://ads.zavolga.net/www/delivery/lg.php?bannerid=23&amp;campaignid=9&amp;zoneid=10&amp;loc=https%3A%2F%2Fmy.dnevnik76.ru%2Fhomework%2F&amp;cb=2ab0130141" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div>
+<noscript><a href='http://ads.zavolga.net/www/delivery/ck.php?n=ab06faa9&amp;cb={random}' target='_blank'><img src='http://ads.zavolga.net/www/delivery/avw.php?zoneid=10&amp;cb={random}&amp;n=ab06faa9&amp;ct0={clickurl_enc}' border='0' alt='' /></a></noscript>
+            </div>
+        </div>
+        
+
+        <div id="content">
+            
+                <div id="head_title">
+                    <h2>Домашнее задание</h2>
+                    
+                </div>
+
+                
+            
+            
+    <div id="markloc" class="location" style="z-index: 99;">
+        <form id="hwfilter" action="/homework/" method="get" onsubmit="preprocShowHomeworks(this)">
+            <span id="result">
+<select name="subjsel" id="subjsel">
+    <option value="0">Выбрать предмет →</option>
+    
+    <option value="4137">Алгебра</option>
+    
+    <option value="21875">Английский</option>
+    
+    <option value="4133">Биология</option>
+    
+    <option value="40908">Всеобщая история. История России.</option>
+    
+    <option value="4131">География</option>
+    
+    <option value="4138">Геометрия</option>
+    
+    <option value="4123">Изобразительное искусство</option>
+    
+    <option value="4139">Информатика</option>
+    
+    <option value="15580">Классный час</option>
+    
+    <option value="45672">Курс по выбору: Математика плюс</option>
+    
+    <option value="4121">Литература</option>
+    
+    <option value="4124">Музыка</option>
+    
+    <option value="21876">Немецкий</option>
+    
+    <option value="4128">Обществознание</option>
+    
+    <option value="23610">Родной язык (русский)</option>
+    
+    <option value="4120">Русский язык</option>
+    
+    <option value="4144">Технология</option>
+    
+    <option value="4132">Физика</option>
+    
+    <option value="4140">Физкультура</option>
+    
+    <option value="21877">Французский</option>
+    
+    <option value="4134">Химия</option>
+    
+</select>
+
+</span>
+            <input type="submit" value="Показать" class="apply filter">
+            <input type="button" value="&nbsp;" title="Сбросить фильтр и показать все домашние задания" class="apply filter_del" onclick="clearHwFilter('/homework/')">
+        </form>
+        <span id="progress" style="display: none;"></span>
+    </div><div></div>
+    
+    
+    <div id="homework_list">
+        <table class="list mtop">
+            <thead>
+                <tr>
+                    <th width="135px">Дата ↑</th>
+                    <th width="125px">День недели</th>
+                    <th width="15%">Предмет</th>
+                    <th>Домашнее задание</th>
+                    <th width="35%">Тема урока</th>
+                </tr>
+            </thead>
+	        
+	        <tbody><tr class="odd">
+                <td>30 ноября 2021 г.</td>
+                <td>Вторник</td>
+                <td><a href="" onclick="return showSubjHomeworks('4120')" title="Все домашние задания по данному предмету">Русский язык</a></td>
+                <td>Упр 215,217( классная и домашняя) Подробности в массовых сообщениях </td>
+                <td>Урок 30 ноября.Тема :Морфологический разбор деепричастия. Смотрим видео по ссылке. https://yandex.ru/video/preview/268351227462746126 Читаем материал п 33 стр 113-114 Обратите внимание, есть в видео и учебнике несоответствие. ( Начальную форму по нашему учебнику указывать не надо)Выполняем классную работу в тетрадях. Упр 215 Списать, расставить пропущенные буквы и знаки препинания.Разобрать 2 деепричастия( из 2 и 4 предложения ЖУРЧА и УНОСЯСЬ)Домашнее задание Упр 217Присылать мне не надо.Проверю, когда выйдем. </td>
+	        </tr>
+	        
+	        <tr class="even">
+                <td>30 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4132')" title="Все домашние задания по данному предмету">Физика</a></td>
+                <td>РИД- контрольная работа </td>
+                <td>Контрольная работа № 2 по теме «Движение, взаимодействие, масса». </td>
+	        </tr>
+	        
+	        <tr class="odd">
+                <td>30 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4121')" title="Все домашние задания по данному предмету">Литература</a></td>
+                <td>Поготовить пересказ понравившегося эпизода из повести " Тарас Бульба" </td>
+                <td>Гоголь " Тарас Бульба" </td>
+	        </tr>
+	        
+	        <tr class="even">
+                <td>29 ноября 2021 г.</td>
+                <td>Понедельник</td>
+                <td><a href="" onclick="return showSubjHomeworks('40908')" title="Все домашние задания по данному предмету">Всеобщая история. История России.</a></td>
+                <td>п.20 конспект </td>
+                <td>Могущество и упадок Османской империи. </td>
+	        </tr>
+	        
+	        <tr class="odd">
+                <td>29 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4133')" title="Все домашние задания по данному предмету">Биология</a></td>
+                <td>§14, вопросы и задания стр.79 </td>
+                <td>Класс Ракообразные </td>
+	        </tr>
+	        
+	        <tr class="even">
+                <td>29 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4140')" title="Все домашние задания по данному предмету">Физкультура</a></td>
+                <td>офп </td>
+                <td>Опорный прыжок. </td>
+	        </tr>
+	        
+	        <tr class="odd">
+                <td>29 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4120')" title="Все домашние задания по данному предмету">Русский язык</a></td>
+                <td>п 32 , упр 205, задание в яклассе </td>
+                <td>Деепричастия совершенного вида. </td>
+	        </tr>
+	        
+	        <tr class="even">
+                <td>29 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4138')" title="Все домашние задания по данному предмету">Геометрия</a></td>
+                <td>Учить признаки равенства треугольников </td>
+                <td>Третий признак равенства треугольников. </td>
+	        </tr>
+	        
+	        <tr class="odd">
+                <td>29 ноября 2021 г.</td>
+                <td>-</td>
+                <td><a href="" onclick="return showSubjHomeworks('4137')" title="Все домашние задания по данному предмету">Алгебра</a></td>
+                <td>стр.82 пример 4 разобрать с записью в тетрадь, сделать №439, 450(1,2) </td>
+                <td>Вынесение общего множителя за скобки. Решение уравнений. </td>
+	        </tr>
+	        
+	        <tr class="even">
+                <td>27 ноября 2021 г.</td>
+                <td>Суббота</td>
+                <td><a href="" onclick="return showSubjHomeworks('4139')" title="Все домашние задания по данному предмету">Информатика</a></td>
+                <td>§2.2 </td>
+                <td>Персональный компьютер. </td>
+	        </tr>
+	        
+        </tbody></table>
+        <div class="pager">
+    
+	    <span class="page_remark">Страницы:</span>
+	    
+		
+		
+		
+		
+		
+	        <span class="page current"><a href="?page=1">1</a></span>
+		
+	        <span class="page"><a href="?page=2">2</a></span>
+		
+	        <span class="page"><a href="?page=3">3</a></span>
+		
+		
+		
+		    <span class="more">...</span>
+		    <span class="page"><a href="?page=38">38</a></span>
+		
+		
+		
+		    <span class="page page_next"><a href="?page=2">&nbsp;</a></span>
+		
+	
+	
+	
+		<select id="items_perpage" onchange="selectPerPageItems(this)">
+            
+	        <option value="10" selected="selected">10</option>
+	        
+	        <option value="20">20</option>
+	        
+	        <option value="30">30</option>
+	        
+	        <option value="50">50</option>
+	        
+	    </select>
+	    <span class="ipp_remark">на стр.</span>
+    
+</div>
+
+    </div>
+    
+
+        </div>
+    </div>
+
+    
+    <div id="footer_wrap">
+        <div id="footer">
+            <div id="color_line">
+                <div class="col1"></div>
+                <div class="col2"></div>
+                <div class="col3"></div>
+            </div>
+            <div id="support">
+                <span id="phone"><span>Поддержка:</span> +7 (4852) 33-34-03<br>
+                <span>E-mail:</span> <a href="mailto:help@dnevnik76.ru">help@dnevnik76.ru</a></span>
+                <span id="stat">
+                    <!-- Yandex.Metrika informer -->
+                    <a href="https://metrika.yandex.ru/stat/?id=10988770&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/10988770/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="10988770" data-lang="ru"></a>
+                    <!-- /Yandex.Metrika informer -->
+                </span>
+            </div>
+            <div class="badges">
+                <a href="https://play.google.com/store/apps/details?id=ru.dnevnik76.electronicdiary" class="image">
+                    <img alt="Доступно в Google Play" src="/static/images/google_play_ru_200.png">
+                </a>
+                <a href="https://itunes.apple.com/ru/app/id1257563724?l=ru&amp;amp;ls=1&amp;amp;mt=8" class="image">
+                    <img alt="Загрузите в App Store" src="/static/images/app_store_badge_ru_200.png">
+                </a>
+            </div>
+            <div id="copyright">
+                © 2011 <a href="http://zavolga.net">Zavolga.Net</a><br>
+                <a href="http://dnevnik76.ru/rid_privacy_policy.pdf" target="_blank">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </div>
+    
+
+<div id="jivo-iframe-container" style="opacity: 0; visibility: hidden; width: 0px; height: 0px; overflow: hidden;"><iframe src="javascript:void(0)" allow="autoplay" title="Jivochat" name="jivo_container" id="jivo_container" frameborder="no"></iframe></div><jdiv><jdiv class="globalClass_d2b6"><jdiv style="animation: 300ms cubic-bezier(0.39, 0.24, 0.21, 0.99) 0s 1 normal both running Label_CLOSE_WIDGET_e4eb; display: block; z-index: 2147483646; position: fixed;"><jdiv class="label_47b4 _bottom_8708 notranslate" id="jvlabelWrap" style="background: linear-gradient(95deg, rgb(47, 50, 74) 20%, rgb(66, 72, 103) 80%); right: 30px; bottom: 0px;"><jdiv class="hoverl_2c0f"><jdiv class="lbContainer_57e9"></jdiv></jdiv><jdiv class="text_9927 _noAd_d4ae contentTransitionWrap_9353" style="font-size: 14px; font-family: Arial, Arial; font-style: normal; color: rgb(240, 241, 241);">Напишите нам, мы онлайн!</jdiv><jdiv class="leafCont_f176"><jdiv class="leaf_d352 _bottom_aded"><jdiv class="cssLeaf_3bb7" style="background-image: url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2240%22%20viewBox%3D%220%200%2032%2040%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23424867%22%20d%3D%22M0%200h9.02L32%2033.196V40H0z%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%2318C139%22%20d%3D%22M9%200c3.581.05%2023%205.426%2023%2033.08v.03C18.922%2030.751%209%2019.311%209%205.554V0z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A&quot;);"></jdiv></jdiv></jdiv><jdiv class="copyContainer_1251"><jdiv class="copyright_9f3d _bottom_2daf __ru_7724" style="background: linear-gradient(95deg, rgb(47, 50, 74) 20%, rgb(66, 72, 103) 80%);"><jdiv class="text_3a5e" style="color: rgb(240, 241, 241);"><a href="https://www.jivo.ru/i_sa/?utm_source=my.dnevnik76.ru&amp;utm_medium=link&amp;utm_content=label_tooltip&amp;utm_campaign=from_widget" rel="nofollow noopener" target="_blank" class="link_8d14 __ru_7724">Бизнес-мессенджер <jdiv class="logoIcon_d4de" style="background-image: url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2225.688%22%20height%3D%2218%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23F0F1F1%22%20d%3D%22M7.155%205.93H6.134a.4.4%200%2000-.287.128.378.378%200%2000-.123.268v7.448a.377.377%200%2000.123.28.389.389%200%2000.287.12h1.021a.382.382%200%2000.274-.12.353.353%200%2000.131-.28V6.33a.375.375%200%2000-.131-.268.353.353%200%2000-.274-.132zm9.313.02h-.824a.557.557%200%2000-.57.228l-2.353%205.04h-.041l-2.242-5.04a.379.379%200%2000-.369-.228H8.958a.356.356%200%2000-.328.14.289.289%200%2000.021.32l3.648%207.748a.376.376%200%2000.369.208h.111a.373.373%200%2000.348-.208l3.648-7.748a.288.288%200%2000.021-.32.368.368%200%2000-.328-.14zm4.935-.188a4.312%204.312%200%2000-4.3%204.276%204.212%204.212%200%20001.254%203.044%204.11%204.11%200%20003.038%201.284%204.069%204.069%200%20003.025-1.284%204.181%204.181%200%20001.262-3.044%204.313%204.313%200%2000-4.279-4.276zm1.783%206.156a2.379%202.379%200%2001-1.783.756%202.4%202.4%200%2001-1.8-.744%202.623%202.623%200%2001-.725-1.888%202.529%202.529%200%2001.725-1.84%202.427%202.427%200%20011.8-.736%202.368%202.368%200%20011.783.736%202.525%202.525%200%2001.725%201.84%202.669%202.669%200%2001-.725%201.876zM3.322%205.93H.416a.392.392%200%2000-.275.128.373.373%200%2000-.131.272v1a.386.386%200%2000.131.28.4.4%200%2000.275.12h1.475v7.17a1.331%201.331%200%2001-1.18%201.312H.416a.4.4%200%2000-.287.12.371.371%200%2000-.123.28v1a.415.415%200%2000.111.28.394.394%200%2000.295.12h.143a3.13%203.13%200%20003.152-2.9.848.848%200%2000.017-.188V6.33a.377.377%200%2000-.123-.28.365.365%200%2000-.279-.12z%22%20fill-rule%3D%22evenodd%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%2318C139%22%20d%3D%22M.03-.006c-.254%204.676%203.681%205.34%203.681%205.34C3.515.214.03-.006.03-.006z%22%20fill-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E&quot;);"></jdiv></a></jdiv><jdiv class="corner_0b17" style="border-top-color: rgb(66, 72, 103);"></jdiv></jdiv></jdiv></jdiv></jdiv><jdiv id="jivo-player" class="player_cee0"><audio preload="auto" id="jivo-sound-agent_message"><source src="https://code-eu1.jivosite.com/sounds/agent_message.mp3" type="audio/mpeg"><source src="https://code-eu1.jivosite.com/sounds/agent_message.ogg" type="audio/ogg; codecs=vorbis"><source src="https://code-eu1.jivosite.com/sounds/agent_message.wav" type="audio/wav"></audio><audio preload="auto" id="jivo-sound-notification"><source src="https://code-eu1.jivosite.com/sounds/notification.mp3" type="audio/mpeg"><source src="https://code-eu1.jivosite.com/sounds/notification.ogg" type="audio/ogg; codecs=vorbis"><source src="https://code-eu1.jivosite.com/sounds/notification.wav" type="audio/wav"></audio><audio preload="auto" id="jivo-sound-outgoing_message"><source src="https://code-eu1.jivosite.com/sounds/outgoing_message.mp3" type="audio/mpeg"><source src="https://code-eu1.jivosite.com/sounds/outgoing_message.ogg" type="audio/ogg; codecs=vorbis"><source src="https://code-eu1.jivosite.com/sounds/outgoing_message.wav" type="audio/wav"></audio></jdiv><jdiv id="jcont" style="animation: 300ms cubic-bezier(0.39, 0.24, 0.21, 0.99) 0s 1 normal both running WidgetContainer_CLOSE_WIDGET_7de3; --right:30px; --height:496px; position: fixed; display: block; --labelwidth:300px; --labelright:30px;"><jdiv class="wrap_4bf8" dir="ltr" id="jivo_action"><jdiv class="closeButton_75c5" id="jivo_close_button"><jdiv class="closeIcon_5d8d" style="background-image: url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2228%22%20height%3D%2228%22%20viewBox%3D%220%200%2028%2028%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(2%202)%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%23FFF%22%20opacity%3D%221%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212.75%22%20stroke%3D%22%23222D38%22%20stroke-width%3D%221.5%22%20opacity%3D%221%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cg%20fill%3D%22%23222D38%22%20opacity%3D%221%22%20transform%3D%22translate(6%206)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%221.611%22%20height%3D%2213.9%22%20x%3D%225.435%22%20y%3D%22-.941%22%20rx%3D%22.806%22%20transform%3D%22rotate(45%206.24%206.01)%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20width%3D%221.611%22%20height%3D%2213.9%22%20x%3D%225.435%22%20y%3D%22-.941%22%20rx%3D%22.806%22%20transform%3D%22scale(-1%201)%20rotate(45%200%20-9.058)%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A&quot;);"></jdiv></jdiv></jdiv><jdiv class="contentWrapper_37c0"></jdiv></jdiv><jdiv class="pseudoHeight_e908"></jdiv><jdiv class="jivoMouseTrack_1373"></jdiv></jdiv></jdiv></body></html>
